@@ -1,0 +1,15 @@
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoText {
+  color: var(--main);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.logoIcon {
+  fill: var(--button);
+}

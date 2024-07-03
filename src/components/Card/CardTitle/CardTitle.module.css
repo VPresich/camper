@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.titleWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.25;
+  color: var(--main);
+}
+
+.price {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.25;
+  color: var(--main);
+}

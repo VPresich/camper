@@ -1,0 +1,25 @@
+.container {
+  border-radius: 100px;
+  padding: 12px 18px;
+  height: 44px;
+  background: var(--block-features);
+  display: flex;
+  gap: 8px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  text-align: center;
+  color: var(--main);
+}
+
+.fill {
+  fill: var(--main);
+}
+
+.stroke {
+  fill: transparent;
+  stroke: var(--main);
+}

@@ -1,0 +1,21 @@
+.nav {
+  display: flex;
+  column-gap: 12px;
+}
+
+.item {
+  color: var(--main);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  font-style: normal;
+  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
+.active {
+  color: var(--button);
+}
+
+.item:hover {
+  color: var(--button);
+}
