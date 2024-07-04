@@ -2,6 +2,13 @@
   width: 982px;
 }
 
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  margin-bottom: 44px;
+}
+
 .name {
   font-weight: 600;
   font-size: 24px;
@@ -9,11 +16,11 @@
   color: var(--main);
   margin-bottom: 8px;
 }
+
 .wrapperRating {
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-  margin-bottom: 24px;
 }
 
 .price {
@@ -28,4 +35,52 @@
   font-size: 16px;
   line-height: 150%;
   color: var(--text);
+}
+
+.modalContent {
+  overflow-y: auto;
+  max-height: 636px;
+}
+
+.modalContent::-webkit-scrollbar {
+  border-radius: 7px;
+  width: 8px;
+  height: 264px;
+  background: #d9d9d9;
+}
+
+.modalContent::-webkit-scrollbar-thumb {
+  border-radius: 7px;
+  width: 8px;
+  background: #d9d9d9;
+}
+
+.menu {
+  display: flex;
+  column-gap: 40px;
+  width: 206px;
+  margin-bottom: 44px;
+}
+
+.menuItem {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: var(--main);
+  position: relative;
+  padding-bottom: 16px;
+}
+
+.active::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--button);
+}
+
+.menuItem:hover {
+  color: var(--button-hover);
 }

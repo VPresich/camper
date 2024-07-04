@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 44px;
+}
+
+.categoriesList {
+  width: 430px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: var(--main);
+  margin-bottom: 48px;
+}
+
+.table {
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 14px;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+  text-align: center;
+  color: var(--main);
+}
