@@ -4,9 +4,9 @@ export default function CardsList({ campers }) {
   return (
     <ul>
       {campers.map((camper) => (
-        <li key={camper._id}>
+        <li key={camper.id}>
           <Card
-            id={camper._id}
+            id={camper.id}
             imgUrl={camper.gallery[0]}
             name={camper.name}
             price={camper.price}
@@ -19,6 +19,8 @@ export default function CardsList({ campers }) {
               beds: camper.details.beds,
               form: camper.form,
             }}
+            location={camper.location}
+            reviews={camper.reviews}
           />
         </li>
       ))}

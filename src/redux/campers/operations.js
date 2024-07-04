@@ -8,7 +8,6 @@ export const getCampersPerPage = createAsyncThunk(
       const response = await axiosInst.get(`campers`, {
         params: { page, limit },
       });
-      console.log(response);
       return {
         items: response.data,
         totalItems: response.data.lenght,
@@ -24,6 +23,7 @@ export const getCamperById = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await axiosInst.get(`campers/${id}`);
+      console.log("getCamper", response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

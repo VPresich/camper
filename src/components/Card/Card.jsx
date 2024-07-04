@@ -1,9 +1,15 @@
 import { useState } from "react";
-import LinesEllipsis from "react-lines-ellipsis";
 import CardTitle from "./CardTitle/CardTitle";
-import CategoryList from "./CategoryList/CategoryList";
+import CategoryList from "../../components/UI/CategoryList/CategoryList";
 import Button from "../UI/Button/Button";
+import Location from "../../components/Location/Location";
+import Rating from "../../components/Rating/Rating";
+import ModalWrapper from "../ModalWrapper/ModalWrapper";
+import getReviewersRating from "../../auxiliary/getReviewersRating";
+import ModalContent from "../ModalContent/ModalContent";
 import getCategoryShortList from "../../auxiliary/getCategoryShortList";
+import Image from "../UI/Image/Image";
+import EllipsisText from "../UI/EllipsisText/EllipsisText";
 
 import css from "./Card.module.css";
 
@@ -14,28 +20,30 @@ export default function Card({
   price,
   description,
   details,
+  reviews,
+  location,
 }) {
   const [showModal, setShowModal] = useState(false);
-
   const handleClick = () => {
     setShowModal(true);
   };
 
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
   return (
     <div className={css.container}>
-      <div className={css.img}>
-        <img src={imgUrl} alt={name} />
-      </div>
+      <Image imgUrl={imgUrl} name={name} />
       <div className={css.infoWrapper}>
         <CardTitle name={name} price={price} id={id} />
-
-        <LinesEllipsis
+        <div className={css.wrapperSecondLine}>
+          <Rating rating={getReviewersRating(reviews)} />
+          <Location location={location} />
+        </div>
+        <EllipsisText
           text={description}
-          maxLine="1"
-          ellipsis="..."
-          trimRight
-          basedOn="letters"
-          component="p"
+          maxLines={1}
           className={css.description}
         />
         <CategoryList categories={getCategoryShortList(details)} />
@@ -43,6 +51,11 @@ export default function Card({
           Show more
         </Button>
       </div>
+      {showModal && (
+        <ModalWrapper onClose={handleClose}>
+          <ModalContent id={id} />
+        </ModalWrapper>
+      )}
     </div>
   );
 }

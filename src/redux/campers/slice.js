@@ -57,12 +57,16 @@ const campersSlice = createSlice({
       .addCase(getCamperById.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.items.findIndex(
-          (task) => task._id === action.payload.id
+        console.log("action.payload", action.payload);
+        const existingIndex = state.items.findIndex(
+          (camper) => camper.id === action.payload.id
         );
-        index
-          ? (state.items[index] = action.payload)
-          : state.items.push(action.payload);
+
+        if (existingIndex !== -1) {
+          state.items[existingIndex] = action.payload;
+        } else {
+          state.items.push(action.payload);
+        }
       })
       .addCase(getCamperById.rejected, (state, action) => {
         state.isLoading = false;

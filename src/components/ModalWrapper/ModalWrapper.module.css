@@ -1,0 +1,34 @@
+.modalWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal {
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.icon {
+  fill: transparent;
+  stroke: var(--main);
+}

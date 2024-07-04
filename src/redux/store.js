@@ -1,5 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
+import storage from "redux-persist/lib/storage";
 import campersReducer from "../redux/campers/slice";
+import geocodeReducer from "../redux/geocode/slice";
 
 import {
   persistStore,
@@ -12,23 +14,16 @@ import {
   REGISTER,
 } from "redux-persist";
 
-import storage from "redux-persist/lib/storage";
-
-// export const store = configureStore({
-//   reducer: {
-//     campers: campersReducer,
-//   },
-// });
-
 const campersPersistConfig = {
   key: "campers",
   storage,
   whitelist: ["favorites"],
 };
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
     campers: persistReducer(campersPersistConfig, campersReducer),
+    geocode: geocodeReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -39,4 +34,6 @@ export const store = configureStore({
     }),
 });
 
-export const persistor = persistStore(store);
+const persistor = persistStore(store);
+
+export { store, persistor };

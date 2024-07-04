@@ -1,8 +1,6 @@
 import { createSelector } from "reselect";
-export const selectFavorites = (state) => state.campers.favorites;
-
 const selectCampersState = (state) => state.campers;
-
+export const selectFavorites = (state) => state.campers.favorites;
 export const selectCampers = (state) => state.campers.items;
 
 export const selectCurrentPage = createSelector(
@@ -23,4 +21,9 @@ export const selectTotalItems = createSelector(
 export const selectIsLoading = createSelector(
   selectCampersState,
   (campers) => campers.isLoading
+);
+
+export const selectCamperById = createSelector(
+  [selectCampers, (state, camperId) => camperId],
+  (campers, camperId) => campers.find((camper) => camper.id === camperId)
 );

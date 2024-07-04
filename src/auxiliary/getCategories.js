@@ -18,7 +18,7 @@ export default function getCategories(details, categoriyIcons) {
           iconObj.title = `${value} ${iconMatch.title.toLowerCase()}s`;
         }
         if (typeof value === "string") {
-          iconObj.title = `${value}`;
+          iconObj.title = `${value.charAt(0).toUpperCase() + value.slice(1)}`;
         }
         formattedDetails.push(iconObj);
       }
