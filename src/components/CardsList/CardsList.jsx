@@ -1,8 +1,9 @@
 import Card from "../../components/Card/Card";
+import css from "./CardsList.module.css";
 
 export default function CardsList({ campers }) {
   return (
-    <ul>
+    <ul className={css.container}>
       {campers.map((camper) => (
         <li key={camper.id}>
           <Card

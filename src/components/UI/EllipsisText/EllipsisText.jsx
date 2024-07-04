@@ -1,6 +1,6 @@
 import LinesEllipsis from "react-lines-ellipsis";
 
-const EllipsisText = ({ text, maxLines = 3, className }) => {
+const EllipsisText = ({ text, maxLines = 1, className }) => {
   return (
     <LinesEllipsis
       text={text}

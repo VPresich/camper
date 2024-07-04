@@ -8,21 +8,36 @@
   gap: 24px;
 }
 
+.infoWrapper {
+  width: 526px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mainInfo {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
 .wrapperSecondLine {
   display: flex;
   column-gap: 16px;
 }
 
-.infoWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  flex: 1;
-}
-
 .description {
   font-weight: 400;
   font-size: 16px;
-  line-height: 150%;
+  line-height: 1.5;
   color: var(--text);
+}
+
+.categoriesList {
+  width: 526px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
 }

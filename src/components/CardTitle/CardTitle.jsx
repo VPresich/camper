@@ -1,6 +1,6 @@
 import css from "./CardTitle.module.css";
-import FavoriteButton from "../../UI/FavoriteButton/FavoriteButton";
-import formatPrice from "../../../auxiliary/formatPrice";
+import FavoriteButton from "../UI/FavoriteButton/FavoriteButton";
+import formatPrice from "../../auxiliary/formatPrice";
 
 export default function CardTitle({ id, name, price }) {
   return (

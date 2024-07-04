@@ -30,7 +30,11 @@ export default function ModalContent({ id }) {
         <p className={css.price}>{formatPrice(price)}</p>
       </div>
 
-      <EllipsisText text={description} className={css.description} />
+      <EllipsisText
+        text={description}
+        maxLines={3}
+        className={css.description}
+      />
     </div>
   );
 }

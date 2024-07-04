@@ -13,6 +13,7 @@ import {
 import DocumentTitle from "../../components/DocumentTitle";
 import SideBar from "../../components/SideBar/SideBar";
 import CardsList from "../../components/CardsList/CardsList";
+import Button from "../../components/UI/Button/Button";
 import css from "./Catalog.module.css";
 
 export default function Catalog() {
@@ -34,18 +35,27 @@ export default function Catalog() {
   return (
     <>
       <DocumentTitle>Camper catalog</DocumentTitle>
-      <h2>Catalog Page</h2>
       <div className={css.container}>
         <SideBar />
-        <CardsList campers={campers} />
+        <section className={css.catalogContainer}>
+          <h2 className="visually-hidden"> Campers catalog</h2>
+          <CardsList campers={campers} />
+
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            totalItems > campers.length && (
+              <Button
+                variant="transparent"
+                width="145px"
+                onClick={handleLoadMore}
+              >
+                Load More
+              </Button>
+            )
+          )}
+        </section>
       </div>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        totalItems > campers.length && (
-          <button onClick={handleLoadMore}>Load More</button>
-        )
-      )}
     </>
   );
 }

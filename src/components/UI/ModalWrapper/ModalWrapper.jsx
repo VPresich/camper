@@ -1,28 +1,34 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import css from "./ModalWrapper.module.css";
-import iconsPath from "../../assets/img/icons.svg";
+import iconsPath from "../../../assets/img/icons.svg";
 
 const ModalWrapper = ({ children, onClose }) => {
   const wrapperRef = useRef(null);
 
-  const handleClickOutside = (event) => {
-    if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-      onClose();
-    }
-  };
+  const handleClickOutside = useCallback(
+    (event) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        onClose();
+      }
+    },
+    [onClose]
+  );
 
-  const handleDocumentKeyDown = (event) => {
-    if (event.key === "Escape") {
-      onClose();
-    }
-  };
+  const handleDocumentKeyDown = useCallback(
+    (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    },
+    [onClose]
+  );
 
   useEffect(() => {
     document.addEventListener("keydown", handleDocumentKeyDown);
     return () => {
       document.removeEventListener("keydown", handleDocumentKeyDown);
     };
-  }, [onClose]);
+  }, [handleDocumentKeyDown]);
 
   return (
     <div className={css.modalWrapper} onClick={handleClickOutside}>
