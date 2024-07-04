@@ -13,7 +13,7 @@ export default function Logo() {
         <use href={`${iconsPath}#icon-button1`} />
       </svg>
 
-      <p className={css.logoText}>Camper Ukraine</p>
+      <p className={css.logoText}>Campers-Ukraine</p>
     </div>
   );
 }
