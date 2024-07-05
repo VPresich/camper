@@ -1,0 +1,56 @@
+.pseudoRadio {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 10px;
+  min-width: 110px;
+  padding-left: 24px;
+  padding-right: 24px;
+  width: auto;
+  height: 95px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+.realRadio {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radioIcon {
+  width: 40px;
+  height: 28px;
+
+  margin-bottom: 8px;
+}
+
+.fill {
+  fill: var(--main);
+}
+
+.stroke {
+  stroke: var(--main);
+}
+
+.realRadio:checked > .pseudoRadio {
+  border: 1px solid var(--button);
+}
+
+.iconWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.radioLabel {
+  font-family: "Inter-Regular", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  text-align: center;
+  color: var(--main);
+  text-align: center;
+}

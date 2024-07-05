@@ -1,0 +1,82 @@
+.form {
+  font-family: "Inter-Regular", sans-serif;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 64px;
+}
+
+.filterControls {
+  display: flex;
+  flex-direction: column;
+  row-gap: 32px;
+}
+
+.location {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: rgba(16, 24, 40, 0.6);
+}
+
+.fieldWrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  position: relative;
+}
+
+.fieldLocation {
+  border-radius: 10px;
+  padding: 18px 4px 18px 18px;
+  width: 100%;
+  height: 56px;
+  background: var(--inputs);
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--main);
+}
+
+.locationIcon {
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 18px;
+  height: 20px;
+  color: var(--main);
+}
+
+.radioBtnsWrapper {
+  display: flex;
+  column-gap: 10px;
+}
+
+.vehiclefilter {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+}
+
+.vehiclefilterTitle {
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: var(--main);
+}
+
+.line {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  color: #d9d9d9;
+  width: 100%;
+  border: none;
+  border-top: 1px solid #d9d9d9;
+}

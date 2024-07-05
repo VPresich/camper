@@ -13,7 +13,7 @@ export default function OrderForm() {
       initialValues={{
         name: "",
         email: "",
-        date: "",
+        date: null,
         comment: "",
       }}
       onSubmit={handleSubmit}
@@ -23,7 +23,7 @@ export default function OrderForm() {
         <div className={css.info}>
           <Input name={"name"} placeholder={"Name"} />
           <Input name={"email"} placeholder={"Email"} />
-          <Input name={"date"} placeholder={"Booking date"} />
+          <Input name={"date"} placeholder={"Booking date"} type="date" />
           <TextareaForm name={"comment"} placeholder={"Comment"} />
         </div>
         <Button variant="color" width="160px" type="submit">
