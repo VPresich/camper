@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import campersReducer from "../redux/campers/slice";
 import geocodeReducer from "../redux/geocode/slice";
+import filtersReducer from "../redux/filters/slice";
 
 import {
   persistStore,
@@ -24,6 +25,7 @@ const store = configureStore({
   reducer: {
     campers: persistReducer(campersPersistConfig, campersReducer),
     geocode: geocodeReducer,
+    filters: filtersReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

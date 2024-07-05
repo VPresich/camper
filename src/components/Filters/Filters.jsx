@@ -1,21 +1,35 @@
 import { Formik, Field, Form } from "formik";
+import { useDispatch } from "react-redux";
 import { CiLocationOn } from "react-icons/ci";
+import { saveFilters } from "../../redux/filters/slice";
 import Button from "../UI/Button/Button";
-import RadioButton from "../UI/RadioButton/RadioButton";
+import FilterButton from "../UI/FilterButton/FilterButton";
 import css from "./Filters.module.css";
 import { formFilterIcons } from "./constants";
+import { equipmentFilterIcons } from "./constants";
+import filterObjectByTrueValues from "../../auxiliary/filterObjectByTrueValues";
+import createFilters from "../../auxiliary/createFilters";
 
 export default function Filters() {
-  const handleSubmit = (values) => {
-    console.log("Form submitted with values:", values);
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, form) => {
+    const filtersObj = filterObjectByTrueValues(values);
+    const filters = createFilters(filtersObj);
+    dispatch(saveFilters(filters));
+    form.resetForm();
   };
 
   return (
     <Formik
       initialValues={{
         location: "",
-        equipment: [],
-        type: "van",
+        kitchen: false,
+        tv: false,
+        automatic: false,
+        airconditioner: false,
+        shower: false,
+        vehicle: "van",
       }}
       onSubmit={handleSubmit}
     >
@@ -35,41 +49,41 @@ export default function Filters() {
             />
           </div>
 
-          <div className={css.checkBtnWrapper}>
-            <label>
-              <Field type="checkbox" name="equipment" value="kitchen" />
-              Kitchen
-            </label>
-            <label>
-              <Field type="checkbox" name="equipment" value="airconditioner" />
-              Air Conditioner
-            </label>
-            <label>
-              <Field type="checkbox" name="equipment" value="automatic" />
-              Automatic
-            </label>
-            <label>
-              <Field type="checkbox" name="equipment" value="tv" />
-              TV
-            </label>
-            <label>
-              <Field type="checkbox" name="equipment" value="shower/wc" />
-              Shower/WC
-            </label>
+          <h3 className={css.title}>Filters</h3>
+
+          <div className={css.equipmentFilter}>
+            <h3 className={css.equipmentfilterTitle}>Vehicle equipment</h3>
+            <hr className={css.line} />
+
+            <div className={css.checkBtsnWrapper}>
+              {equipmentFilterIcons.map((item) => (
+                <FilterButton
+                  key={item.value}
+                  name={item.name}
+                  value={item.value}
+                  iconId={item.iconId}
+                  title={item.title}
+                  fill={item.fill}
+                  type="checkbox"
+                />
+              ))}
+            </div>
           </div>
 
           <div className={css.vehiclefilter}>
             <h3 className={css.vehiclefilterTitle}>Vehicle type</h3>
             <hr className={css.line} />
+
             <div className={css.radioBtnsWrapper}>
               {formFilterIcons.map((item) => (
-                <RadioButton
+                <FilterButton
                   key={item.value}
-                  name="type"
+                  name="vehicle"
                   value={item.value}
                   iconId={item.iconId}
                   title={item.title}
                   fill={item.fill}
+                  type="radio"
                 />
               ))}
             </div>
