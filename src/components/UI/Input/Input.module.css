@@ -8,9 +8,8 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 125%;
-  color: rgba(16, 24, 40, 0.6);
+  color: var(--main);
   border: none;
-  transition: border 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .error {
@@ -18,4 +17,8 @@
   font-size: 12px;
   line-height: 1.25;
   color: var(--button);
+}
+
+.fieldInput::placeholder {
+  color: rgba(16, 24, 40, 0.6);
 }
