@@ -23,8 +23,8 @@
 .icon {
   width: 100%;
   height: 100%;
-  fill: var(--raiting);
-  stroke: var(--raiting);
+  fill: var(--rating);
+  stroke: var(--rating);
 }
 
 .reviewers {

@@ -4,24 +4,31 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 100;
 }
 
 .modal {
+  width: 982px;
   background: #ffffff;
-  padding: 40px;
+  padding-top: 40px;
+  padding-left: 40px;
+  padding-bottom: 40px;
+  padding-right: 40px;
   border-radius: 8px;
   position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 720px;
 }
 
 .closeBtn {
   position: absolute;
   top: 40px;
-  right: 40px;
+  right: 16px;
   background: none;
   border: none;
   font-size: 20px;
@@ -31,4 +38,15 @@
 .icon {
   fill: transparent;
   stroke: var(--main);
+}
+
+.modal::-webkit-scrollbar {
+  background: var(--white);
+}
+
+.modal::-webkit-scrollbar-thumb {
+  border-radius: 7px;
+  width: 4px;
+  height: 264px;
+  background: #d9d9d9;
 }

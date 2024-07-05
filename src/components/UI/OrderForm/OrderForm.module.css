@@ -1,0 +1,6 @@
+.info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 14px;
+  margin-bottom: 24px;
+}

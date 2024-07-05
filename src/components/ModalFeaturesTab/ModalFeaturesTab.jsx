@@ -7,8 +7,7 @@ export default function ModalFeaturesTab({
   details = {},
   vechicleDetails = {},
 }) {
-  const vechicleKeys = Object.keys(vechicleDetails);
-  console.log("DETAILS", vechicleDetails);
+  const vechicleKeys = Object.keys(vechicleDetails); 
   return (
     <div className={css.container}>
       <CategoryList

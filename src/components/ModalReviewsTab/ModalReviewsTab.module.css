@@ -1,0 +1,54 @@
+.container {
+  display: flex;
+  column-gap: 24px;
+}
+
+.reviews {
+  display: flex;
+  flex-direction: column;
+}
+
+.elem {
+  width: 430px;
+  height: 172px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+  margin-bottom: 24px;
+}
+
+.title {
+  height: 60px;
+  display: flex;
+  column-gap: 16px;
+  align-items: center;
+}
+
+.letter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.25;
+  background: var(--block-features);
+  color: var(--button);
+}
+
+.name {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 133%;
+  color: var(--main);
+  margin-bottom: 4px;
+}
+
+.text {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text);
+}

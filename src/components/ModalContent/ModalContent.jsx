@@ -8,7 +8,9 @@ import getReviewersRating from "../../auxiliary/getReviewersRating";
 import EllipsisText from "../UI/EllipsisText/EllipsisText";
 import ImagesList from "../ImagesList/ImagesList";
 import ModalFeaturesTab from "../ModalFeaturesTab/ModalFeaturesTab";
+import ModalReviewsTab from "../ModalReviewsTab/ModalReviewsTab";
 import Rating from "../Rating/Rating";
+import OrderForm from "../../components/UI/OrderForm/OrderForm";
 
 import { TAB1, TAB2 } from "./constants";
 
@@ -81,28 +83,39 @@ export default function ModalContent({ id }) {
             </li>
           </ul>
         </nav>
-        {selectedTab === TAB1 && (
-          <section className={css.tabPanel}>
-            <h2 className="visually-hidden">TAB1</h2>
-            <ModalFeaturesTab
-              details={{ adults, transmission, engine, ...details }}
-              vechicleDetails={{
-                form,
-                length,
-                width,
-                height,
-                tank,
-                consumption,
-              }}
-            />
-          </section>
-        )}
-        {selectedTab === TAB2 && (
-          <section className={css.tabPanel}>
-            <h2 className="visually-hidden">TAB2</h2>
-            {/* Add your TAB2 content here */}
-          </section>
-        )}
+        <hr className={css.line} />
+        <div className={css.wrapperTabsAndForm}>
+          {selectedTab === TAB1 && (
+            <section className={css.tabPanel}>
+              <h2 className="visually-hidden">TAB1</h2>
+              <ModalFeaturesTab
+                details={{ adults, transmission, engine, ...details }}
+                vechicleDetails={{
+                  form,
+                  length,
+                  width,
+                  height,
+                  tank,
+                  consumption,
+                }}
+              />
+            </section>
+          )}
+          {selectedTab === TAB2 && (
+            <section className={css.tabPanel}>
+              <h2 className="visually-hidden">TAB2</h2>
+              <ModalReviewsTab reviews={reviews} />
+            </section>
+          )}
+
+          <div className={css.formContainer}>
+            <p className={css.formCaption}>Book your campervan now</p>
+            <p className={css.formtxt}>
+              Stay connected! We are always ready to help you.
+            </p>
+            <OrderForm />
+          </div>
+        </div>
       </div>
     </div>
   );

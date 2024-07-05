@@ -1,8 +1,9 @@
 .container {
-  width: 982px;
+  width: 902px;
 }
 
 .mainContent {
+  width: 902px;
   display: flex;
   flex-direction: column;
   row-gap: 24px;
@@ -37,29 +38,10 @@
   color: var(--text);
 }
 
-.modalContent {
-  overflow-y: auto;
-  max-height: 636px;
-}
-
-.modalContent::-webkit-scrollbar {
-  border-radius: 7px;
-  width: 8px;
-  height: 264px;
-  background: #d9d9d9;
-}
-
-.modalContent::-webkit-scrollbar-thumb {
-  border-radius: 7px;
-  width: 8px;
-  background: #d9d9d9;
-}
-
 .menu {
   display: flex;
   column-gap: 40px;
   width: 206px;
-  margin-bottom: 44px;
 }
 
 .menuItem {
@@ -68,7 +50,7 @@
   line-height: 120%;
   color: var(--main);
   position: relative;
-  padding-bottom: 16px;
+  padding-bottom: 24px;
 }
 
 .active::before {
@@ -83,4 +65,43 @@
 
 .menuItem:hover {
   color: var(--button-hover);
+}
+
+.line {
+  margin-top: 0;
+  margin-bottom: 44px;
+  padding: 0;
+  color: #d9d9d9;
+  width: 100%;
+  border: none;
+  border-top: 1px solid #d9d9d9;
+}
+
+.formContainer {
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 10px;
+  padding: 24px;
+  width: 448px;
+  height: 532px;
+}
+
+.wrapperTabsAndForm {
+  display: flex;
+  column-gap: 24px;
+}
+
+.formCaption {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: var(--main);
+  margin-bottom: 8px;
+}
+
+.formtxt {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: var(--text);
+  margin-bottom: 24px;
 }
