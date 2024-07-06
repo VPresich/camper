@@ -85,32 +85,27 @@ export const selectCampersByDetails = createSelector(
     if (!params || Object.keys(params).length === 0) return campers;
     const paramsKeys = Object.keys(params);
 
-    console.log("HELP", paramsKeys);
     const detailsKeys = paramsKeys.filter(
       (key) => key !== "location" && key !== "form"
     );
-    console.log("HELP", detailsKeys);
 
     if (!detailsKeys || detailsKeys.length === 0) return campers;
 
     return campers.filter((camper) => {
+      const result = true;
       for (const key of detailsKeys) {
-        const result = true;
-
         if (typeof params[key] === "string") {
           if (!camper[key]) return false;
           if (camper[key].toLowerCase() !== params[key].toLowerCase()) {
-            console.log("NO", params[key]);
             return false;
           }
         } else if (typeof params[key] === "number") {
           if (!camper.details[key] || camper.details[key] < 1) {
-            console.log("NO", params[key]);
             return false;
           }
         }
-        return result;
       }
+      return result;
     });
   }
 );

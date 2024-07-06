@@ -2,13 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const filtersSlice = createSlice({
   name: "filters",
-  initialState: {    
+  initialState: {
     params: { form: "van" },
   },
-  reducers: {    
+  reducers: {
     saveQueryParams: {
       reducer: (state, action) => {
-        console.log("Reduser", action.payload);
         state.params = action.payload;
       },
     },
