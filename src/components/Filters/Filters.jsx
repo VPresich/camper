@@ -1,23 +1,22 @@
 import { Formik, Field, Form } from "formik";
 import { useDispatch } from "react-redux";
 import { CiLocationOn } from "react-icons/ci";
-import { saveFilters } from "../../redux/filters/slice";
+import { saveQueryParams } from "../../redux/filters/slice";
 import Button from "../UI/Button/Button";
 import FilterButton from "../UI/FilterButton/FilterButton";
 import css from "./Filters.module.css";
 import { formFilterIcons } from "./constants";
 import { equipmentFilterIcons } from "./constants";
-import filterObjectByTrueValues from "../../auxiliary/filterObjectByTrueValues";
-import createFilters from "../../auxiliary/createFilters";
+import ParamsTrueValues from "../../auxiliary/ParamsTrueValues";
+import { createQueryParams } from "../../auxiliary/createFilters";
 
 export default function Filters() {
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, form) => {
-    const filtersObj = filterObjectByTrueValues(values);
-    const filters = createFilters(filtersObj);
-    dispatch(saveFilters(filters));
-    form.resetForm();
+  const handleSubmit = (values) => {
+    const filtersObj = ParamsTrueValues(values);
+    const queryParams = createQueryParams(filtersObj);
+    dispatch(saveQueryParams(queryParams));
   };
 
   return (
@@ -27,7 +26,7 @@ export default function Filters() {
         kitchen: false,
         tv: false,
         automatic: false,
-        airconditioner: false,
+        airConditioner: false,
         shower: false,
         vehicle: "van",
       }}
@@ -91,7 +90,7 @@ export default function Filters() {
         </div>
 
         <Button variant="color" width="173px" type="submit">
-          Show more
+          Search
         </Button>
       </Form>
     </Formik>

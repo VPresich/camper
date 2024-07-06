@@ -2,17 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const filtersSlice = createSlice({
   name: "filters",
-  initialState: {
-    equipmentfilters: [],
+  initialState: {    
+    params: { form: "van" },
   },
-  reducers: {
-    saveFilters: {
+  reducers: {    
+    saveQueryParams: {
       reducer: (state, action) => {
-        state.equipmentfilters = action.payload;
+        console.log("Reduser", action.payload);
+        state.params = action.payload;
       },
     },
   },
 });
 
-export const { saveFilters } = filtersSlice.actions;
+export const { saveQueryParams } = filtersSlice.actions;
 export default filtersSlice.reducer;

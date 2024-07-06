@@ -1,5 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCampersPerPage, getCamperById } from "./operations";
+import {
+  getCampersPerPage,
+  getCamperById,
+  getCampersWithParams,
+} from "./operations";
 
 const campersSlice = createSlice({
   name: "campers",
@@ -15,6 +19,11 @@ const campersSlice = createSlice({
   reducers: {
     setPage(state, action) {
       state.currentPage = action.payload;
+    },
+
+    resetStore(state) {
+      state.currentPage = 1;
+      state.items = [];
     },
 
     addToFavorites: (state, action) => {
@@ -38,7 +47,6 @@ const campersSlice = createSlice({
       .addCase(getCampersPerPage.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        // state.items = action.payload.items;
         if (state.currentPage > 1)
           state.items = [...state.items, ...action.payload.items];
         else {
@@ -46,6 +54,23 @@ const campersSlice = createSlice({
         }
       })
       .addCase(getCampersPerPage.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(getCampersWithParams.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getCampersWithParams.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.error = null;
+        if (state.currentPage > 1)
+          state.items = [...state.items, ...action.payload.items];
+        else {
+          state.items = action.payload.items;
+        }
+      })
+      .addCase(getCampersWithParams.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       })
@@ -73,6 +98,6 @@ const campersSlice = createSlice({
   },
 });
 
-export const { addToFavorites, removeFromFavorites, setPage } =
+export const { addToFavorites, removeFromFavorites, setPage, resetStore } =
   campersSlice.actions;
 export default campersSlice.reducer;

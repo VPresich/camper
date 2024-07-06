@@ -2,7 +2,7 @@ export const formFilterIcons = [
   { iconId: "icon-button1", value: "van", title: "Van", fill: false },
   {
     iconId: "icon-button2",
-    value: "fullyintegrated",
+    value: "fullyIntegrated",
     title: "Fully Integrated",
     fill: false,
   },
@@ -27,8 +27,8 @@ export const equipmentFilterIcons = [
   { iconId: "cat-tv", name: "tv", value: "tv", title: "TV", fill: false },
   {
     iconId: "cat-airconditioner",
-    name: "airconditioner",
-    value: "airconditioner",
+    name: "airConditioner",
+    value: "airConditioner",
     title: "Conditioner",
     fill: false,
   },
@@ -37,7 +37,7 @@ export const equipmentFilterIcons = [
     iconId: "cat-shower",
     name: "shower",
     value: "shower",
-    title: "Shower",
+    title: "Shower/WS",
     fill: false,
   },
 ];

@@ -1,36 +1,30 @@
-export default function createFilters(obj) {
-  const filters = [];
+export function createQueryParams(obj) {
+  const qeryParams = {};
   const keys = Object.keys(obj);
-  if (keys.length === 0) return filters;
+  if (keys.length === 0) return qeryParams;
 
   for (const key of keys) {
     if (key === "automatic") {
-      const filter = { transmission: "automatic" };
-      filters.push(filter);
+      qeryParams.transmission = "automatic";
       continue;
     }
     if (key === "shower") {
-      const filter1 = { shower: 0 };
-      filters.push(filter1);
-      const filter2 = { toilet: 0 };
-      filters.push(filter2);
+      qeryParams.shower = 1;
+      qeryParams.toilet = 1;
       continue;
     }
     if (key === "vehicle") {
-      const filter = { form: obj[key] };
-      filters.push(filter);
+      qeryParams.form = obj[key];
       continue;
     }
     if (obj[key] === true) {
-      const filter = { [key]: 0 };
-      filters.push(filter);
+      qeryParams[key] = 1;
       continue;
     }
     if (typeof obj[key] === "string") {
-      const filter = { [key]: obj[key] };
-      filters.push(filter);
+      qeryParams[key] = obj[key];
       continue;
     }
   }
-  return filters;
+  return qeryParams;
 }

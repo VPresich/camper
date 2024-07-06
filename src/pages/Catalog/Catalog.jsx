@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCampersPerPage } from "../../redux/campers/operations";
+import { getCampersWithParams } from "../../redux/campers/operations";
 import { setPage } from "../../redux/campers/slice";
 import {
-  selectCampers,
+  // selectCampers,
   selectCurrentPage,
   selectIsLoading,
   selectItemsPerPage,
-  selectTotalItems,
+  selectIsMore,
+  selectCampersByDetails,
 } from "../../redux/campers/selectors";
 
 import DocumentTitle from "../../components/DocumentTitle";
@@ -15,18 +16,32 @@ import SideBar from "../../components/SideBar/SideBar";
 import CardsList from "../../components/CardsList/CardsList";
 import Button from "../../components/UI/Button/Button";
 import css from "./Catalog.module.css";
+import { selectQueryParams } from "../../redux/filters/selectors";
 
 export default function Catalog() {
   const dispatch = useDispatch();
-  const campers = useSelector(selectCampers);
+
+  // const campersAll = useSelector(selectCampers); //without filters
+  // console.log("campersAll", campersAll, campersAll.length);
+
+  const campers = useSelector(selectCampersByDetails);
+  // console.log("CATALOGFILTERED", campers, campers.length);
+
   const currentPage = useSelector(selectCurrentPage);
   const itemsPerPage = useSelector(selectItemsPerPage);
-  const totalItems = useSelector(selectTotalItems);
   const isLoading = useSelector(selectIsLoading);
+  const isMore = useSelector(selectIsMore);
+  const queryParams = useSelector(selectQueryParams);
 
   useEffect(() => {
-    dispatch(getCampersPerPage({ page: currentPage, limit: itemsPerPage }));
-  }, [dispatch, currentPage, itemsPerPage]);
+    dispatch(
+      getCampersWithParams({
+        page: currentPage,
+        limit: itemsPerPage,
+        queryParams,
+      })
+    );
+  }, [dispatch, currentPage, itemsPerPage, queryParams]);
 
   const handleLoadMore = () => {
     dispatch(setPage(currentPage + 1));
@@ -39,12 +54,13 @@ export default function Catalog() {
         <SideBar />
         <section className={css.catalogContainer}>
           <h2 className="visually-hidden"> Campers catalog</h2>
+
           <CardsList campers={campers} />
 
           {isLoading ? (
             <p>Loading...</p>
           ) : (
-            totalItems > campers.length && (
+            isMore && (
               <Button
                 variant="transparent"
                 width="145px"

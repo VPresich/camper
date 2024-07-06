@@ -8,6 +8,7 @@
   line-height: 1.25;
   color: var(--main);
   border: none;
+  outline: none;
   border-radius: 10px;
   padding: 18px 4px 18px 18px;
   resize: none;
