@@ -2,8 +2,6 @@ import { createSelector } from "reselect";
 import { selectQueryParams } from "../filters/selectors";
 
 const selectCampersState = (state) => state.campers;
-// export const selectFavorites = (state) => state.campers.favorites;
-// export const selectCampers = (state) => state.campers.items;
 
 export const selectCampers = createSelector(
   selectCampersState,
