@@ -41,12 +41,14 @@
 }
 
 .modal::-webkit-scrollbar {
+  border-radius: 7px;
+  width: 8px;
   background: var(--white);
 }
 
 .modal::-webkit-scrollbar-thumb {
   border-radius: 7px;
-  width: 4px;
+  width: 8px;
   height: 264px;
   background: #d9d9d9;
 }

@@ -2,7 +2,7 @@ import clsx from "clsx";
 import iconsPath from "../../../assets/img/icons.svg";
 import css from "./Category.module.css";
 
-export default function Category({ idIcon, title, fill }) {
+export default function Category({ idIcon, title = "", fill = true }) {
   return (
     <div className={css.container}>
       <svg
@@ -13,8 +13,7 @@ export default function Category({ idIcon, title, fill }) {
       >
         <use href={`${iconsPath}#${idIcon}`} />
       </svg>
-
-      <p className={css.title}>{title}</p>
+      {title && <p className={css.title}>{title}</p>}
     </div>
   );
 }

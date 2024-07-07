@@ -35,7 +35,7 @@
   stroke: var(--main);
 }
 
-.realRadio:checked > .pseudoRadio {
+.pseudoRadio.checked {
   border: 1px solid var(--button);
 }
 

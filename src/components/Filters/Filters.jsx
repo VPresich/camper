@@ -4,6 +4,7 @@ import { CiLocationOn } from "react-icons/ci";
 import { saveQueryParams } from "../../redux/filters/slice";
 import Button from "../UI/Button/Button";
 import FilterButton from "../UI/FilterButton/FilterButton";
+import RadioButton from "../UI/RadioButton/RadioButton";
 import css from "./Filters.module.css";
 import { formFilterIcons } from "./constants";
 import { equipmentFilterIcons } from "./constants";
@@ -75,7 +76,7 @@ export default function Filters() {
 
             <div className={css.radioBtnsWrapper}>
               {formFilterIcons.map((item) => (
-                <FilterButton
+                <RadioButton
                   key={item.value}
                   name="vehicle"
                   value={item.value}

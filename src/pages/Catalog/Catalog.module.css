@@ -1,6 +1,7 @@
 .container {
   display: flex;
   column-gap: 24px;
+  margin: 0 auto;
 }
 
 .catalogContainer {

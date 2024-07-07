@@ -59,7 +59,6 @@ export default function ModalContent({ id }) {
           </div>
 
           <ImagesList images={gallery} />
-
           <EllipsisText
             text={description}
             maxLines={3}

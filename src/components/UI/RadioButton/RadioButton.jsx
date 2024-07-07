@@ -18,7 +18,9 @@ export default function RadioButton({
   };
 
   return (
-    <label className={css.pseudoRadio}>
+    <label
+      className={clsx(css.pseudoRadio, helpers.value === value && css.checked)}
+    >
       <input
         className={css.realRadio}
         type="radio"
