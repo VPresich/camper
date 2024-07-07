@@ -1,8 +1,18 @@
-# React + Vite
+Сamper App Description:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Camper Explore is an application designed for travel enthusiasts and camping aficionados.
+It helps users find, rent, and share information about campers.
 
-Currently, two official plugins are available:
+Key Features:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Search and Rental of Campers:
+
+Users can search for available campers for rent based on location, type of camper, number of seats, and other parameters and equipment.
+
+
+2. Saved Favorites:
+
+Users can save their favorite campers for quick access and future reference.
+
+
+Camper App is created for those who enjoy discovering new places and experiencing adventures, providing all the necessary resources for comfortable and enjoyable camping. 
