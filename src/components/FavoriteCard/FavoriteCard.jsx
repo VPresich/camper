@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { GoTrash } from "react-icons/go";
 import CategoryList from "../UI/CategoryList/CategoryList";
 import Button from "../UI/Button/Button";
 import Location from "../Location/Location";
-
+import { removeFromFavorites } from "../../redux/campers/slice";
 import ModalWrapper from "../UI/ModalWrapper/ModalWrapper";
-
+import FavoriteButton from "../UI/FavoriteButton/FavoriteButton";
 import ModalContent from "../ModalContent/ModalContent";
 import formatPrice from "../../auxiliary/formatPrice";
 import EllipsisText from "../UI/EllipsisText/EllipsisText";
@@ -25,6 +26,8 @@ export default function Card({
   details,
 }) {
   const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
+
   const handleClick = () => {
     setShowModal(true);
   };
@@ -32,7 +35,10 @@ export default function Card({
   const handleClose = () => {
     setShowModal(false);
   };
-  console.log(details);
+
+  const handleDelete = () => {
+    dispatch(removeFromFavorites(id));
+  };
 
   return (
     <div className={css.container}>
@@ -45,8 +51,10 @@ export default function Card({
             <Stars value={rating} />
             <p className={css.price}>{formatPrice(price)}</p>
           </div>
-
-          <Location location={location} />
+          <div className={css.locationWrapper}>
+            <Location location={location} />
+            <FavoriteButton id={id} />
+          </div>
           <hr className={css.line} />
 
           <CategoryList
@@ -58,7 +66,7 @@ export default function Card({
           <Button variant="color" width="173px" onClick={handleClick}>
             Show more
           </Button>
-          <GoTrash className={css.trashIcons} />
+          <GoTrash className={css.trashIcons} onClick={handleDelete} />
         </div>
       </div>
       {showModal && (

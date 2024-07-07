@@ -7,8 +7,7 @@ export const fetchFavorites = createAsyncThunk(
     try {
       const promises = ids.map((id) => axiosInst.get(`campers/${id}`));
       const responses = await Promise.all(promises);
-      const data = responses.map((response) => response.data);
-      console.log(data);
+      const data = responses.map((response) => response.data);  
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

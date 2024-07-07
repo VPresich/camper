@@ -35,6 +35,12 @@
   justify-content: space-between;
 }
 
+.locationWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
 .line {
   margin-top: 0;
   margin-bottom: 12px;
@@ -71,4 +77,5 @@
   width: 36px;
   height: 36px;
   color: var(--text);
+  cursor: pointer;
 }
