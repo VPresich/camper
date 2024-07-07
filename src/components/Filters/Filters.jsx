@@ -5,6 +5,7 @@ import { saveQueryParams } from "../../redux/filters/slice";
 import Button from "../UI/Button/Button";
 import FilterButton from "../UI/FilterButton/FilterButton";
 import RadioButton from "../UI/RadioButton/RadioButton";
+
 import { formFilterIcons } from "./constants";
 import { equipmentFilterIcons } from "./constants";
 import ParamsTrueValues from "../../auxiliary/ParamsTrueValues";
@@ -83,7 +84,6 @@ export default function Filters() {
                   iconId={item.iconId}
                   title={item.title}
                   fill={item.fill}
-                  type="radio"
                 />
               ))}
             </div>
