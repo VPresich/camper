@@ -51,6 +51,7 @@
   color: var(--main);
   position: relative;
   padding-bottom: 24px;
+  transition: color 0.3s ease-in-out;
 }
 
 .active::before {
