@@ -6,7 +6,10 @@ import TextareaForm from "../TextareaForm/TextareaForm";
 import css from "./OrderForm.module.css";
 
 export default function OrderForm() {
-  const handleSubmit = () => {};
+  const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    resetForm();
+    setSubmitting(false);
+  };
 
   return (
     <Formik

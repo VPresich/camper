@@ -5,11 +5,11 @@ import { saveQueryParams } from "../../redux/filters/slice";
 import Button from "../UI/Button/Button";
 import FilterButton from "../UI/FilterButton/FilterButton";
 import RadioButton from "../UI/RadioButton/RadioButton";
-import css from "./Filters.module.css";
 import { formFilterIcons } from "./constants";
 import { equipmentFilterIcons } from "./constants";
 import ParamsTrueValues from "../../auxiliary/ParamsTrueValues";
 import { createQueryParams } from "../../auxiliary/createFilters";
+import css from "./Filters.module.css";
 
 export default function Filters() {
   const dispatch = useDispatch();

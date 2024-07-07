@@ -11,5 +11,5 @@ import {
 export const schema = Yup.object().shape({
   name: Yup.string().min(3, ERR_SHORT).max(50, ERR_LONG).required(ERR_REQUIRED),
   email: Yup.string().email(ERR_EMAIL).required(ERR_EMAIL_REQUIRED),
-  date: Yup.string().required(ERR_REQUIRED),
+  date: Yup.date().required(ERR_REQUIRED),
 });
