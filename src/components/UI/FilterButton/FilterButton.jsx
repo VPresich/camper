@@ -43,8 +43,8 @@ export default function InputButton({
         <span className={css.icon}>
           <svg
             className={clsx(css.icon, fill ? css.fill : css.stroke)}
-            width="40"
-            height="28"
+            width="32"
+            height="32"
             aria-label={`${title} icon`}
           >
             <use href={`${iconsPath}#${iconId}`} />
