@@ -27,3 +27,5 @@
 // });
 
 // export default favoritesSlice.reducer;
+
+//for saving list of favorits in store.

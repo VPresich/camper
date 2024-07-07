@@ -6,6 +6,7 @@ import { fetchFavorites } from "../../redux/favorites/operations";
 import FavoritesList from "../../components/FavoritesList/FavoritesList";
 import DocumentTitle from "../../components/DocumentTitle";
 import css from "./Favorites.module.css";
+import { Link } from "react-router-dom";
 
 export default function Favorites() {
   const [favoriteCampers, setFavoriteCampers] = useState([]);
@@ -32,7 +33,15 @@ export default function Favorites() {
       <div className={css.container}>
         <section className={css.favoritesContent}>
           <h2 className="visually-hidden"> Favorites</h2>
-          {favoriteCampers && <FavoritesList campers={favoriteCampers} />}
+          {favoriteCampers && favoriteCampers.length !== 0 ? (
+            <FavoritesList campers={favoriteCampers} />
+          ) : (
+            <Link to="/catalog" className={css.link}>
+              <p className={css.text}>
+                Looks like you have not selected any favorites yet...
+              </p>
+            </Link>
+          )}
         </section>
       </div>
     </>

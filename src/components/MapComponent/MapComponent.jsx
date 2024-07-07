@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCoordinates } from "../../redux/geocode/selectors";
 import { geocodeLocation } from "../../redux/geocode/operations";
@@ -8,14 +8,12 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 
 const MapComponent = ({ location }) => {
   const dispatch = useDispatch();
-  const [position, setPosition] = useState([0, 0]);
 
   const coord = useSelector(selectCoordinates);
 
   useEffect(() => {
     if (location) {
       const [country, city] = location.split(",").map((part) => part.trim());
-      console.log(country, city);
       dispatch(geocodeLocation({ city, country }));
     }
   }, [dispatch, location]);
