@@ -10,7 +10,7 @@
   padding-right: 24px;
   width: 112px;
   height: 95px;
-  transition: border-color 0.3s ease-in-out;
+  transition: border-color 0.2s ease-in-out;
 }
 
 .realInput {
@@ -51,8 +51,4 @@
   line-height: 125%;
   text-align: center;
   color: var(--main);
-}
-
-.pseudoButton:hover {
-  border-color: var(--button);
 }

@@ -15,6 +15,7 @@ const campersSlice = createSlice({
     currentPage: 1,
     totalItems: 13,
     itemsPerPage: 4,
+    lastQuantity: 0,
   },
   reducers: {
     setPage(state, action) {
@@ -24,6 +25,7 @@ const campersSlice = createSlice({
     resetStore(state) {
       state.currentPage = 1;
       state.items = [];
+      state.lastQuantity = 0;
     },
 
     addToFavorites: (state, action) => {
@@ -69,6 +71,7 @@ const campersSlice = createSlice({
         else {
           state.items = action.payload.items;
         }
+        state.lastQuantity = action.payload.items?.length;
       })
       .addCase(getCampersWithParams.rejected, (state, action) => {
         state.isLoading = false;

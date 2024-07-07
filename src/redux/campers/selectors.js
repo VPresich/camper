@@ -15,7 +15,17 @@ export const selectFavorites = createSelector(
 
 const selectCampersNumber = createSelector(
   selectCampers,
-  (items) => items.length
+  (items) => items?.length
+);
+
+const selectLastQuantity = createSelector(
+  selectCampersState,
+  (campers) => campers.lastQuantity
+);
+
+export const selectItemsPerPage = createSelector(
+  selectCampersState,
+  (campers) => campers.itemsPerPage
 );
 
 const selectTotalItems = createSelector(
@@ -24,18 +34,19 @@ const selectTotalItems = createSelector(
 );
 
 export const selectIsMore = createSelector(
-  [selectCampersNumber, selectTotalItems],
-  (campersNum, campersMax) => campersNum < campersMax
+  [
+    selectCampersNumber,
+    selectTotalItems,
+    selectLastQuantity,
+    selectItemsPerPage,
+  ],
+  (campersNum, campersMax, lastQuantity, limit) =>
+    campersNum < campersMax && lastQuantity === limit
 );
 
 export const selectCurrentPage = createSelector(
   selectCampersState,
   (campers) => campers.currentPage
-);
-
-export const selectItemsPerPage = createSelector(
-  selectCampersState,
-  (campers) => campers.itemsPerPage
 );
 
 export const selectIsLoading = createSelector(
