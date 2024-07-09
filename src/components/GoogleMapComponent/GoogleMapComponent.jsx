@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useCallback } from "react";
+import { useJsApiLoader, GoogleMap, Marker } from "@react-google-maps/api";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCoordinates } from "../../redux/geocode/slice";
@@ -7,10 +8,23 @@ import { geocodeLocation } from "../../redux/geocode/operations";
 
 const googleApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
-import { LoadScript, GoogleMap, Marker } from "@react-google-maps/api";
-
 const MapComponent = ({ location }) => {
   const dispatch = useDispatch();
+  const mapRef = useRef(null);
+
+  const { isLoaded, loadError } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: googleApiKey,
+  });
+
+  const handleLoad = useCallback(function callback(map) {
+    mapRef.current = map;
+  }, []);
+
+  const handleUnmount = useCallback(function callback() {
+    mapRef.current = null;
+  }, []);
+
   const coord = useSelector(selectGeoCoords);
 
   useEffect(() => {
@@ -23,6 +37,7 @@ const MapComponent = ({ location }) => {
           toast.error(err.message);
         });
     }
+
     return () => {
       dispatch(clearCoordinates());
     };
@@ -36,25 +51,29 @@ const MapComponent = ({ location }) => {
   };
 
   return (
-    <LoadScript googleMapsApiKey={googleApiKey}>
-      <GoogleMap
-        mapContainerStyle={mapStyles}
-        center={{
-          lat: coord?.lat || 0,
-          lng: coord?.lng || 0,
-        }}
-        zoom={13}
-      >
-        {coord && (
-          <Marker
-            position={{
-              lat: coord?.lat || 0,
-              lng: coord?.lng || 0,
-            }}
-          />
-        )}
-      </GoogleMap>
-    </LoadScript>
+    <>
+      {isLoaded && !loadError && (
+        <GoogleMap
+          mapContainerStyle={mapStyles}
+          center={{
+            lat: coord?.lat || 0,
+            lng: coord?.lng || 0,
+          }}
+          zoom={13}
+          onLoad={handleLoad}
+          onUnmount={handleUnmount}
+        >
+          {coord && (
+            <Marker
+              position={{
+                lat: coord?.lat || 0,
+                lng: coord?.lng || 0,
+              }}
+            />
+          )}
+        </GoogleMap>
+      )}
+    </>
   );
 };
 
