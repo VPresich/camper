@@ -5,8 +5,7 @@ export const axiosInst = axios.create({
   baseURL: BaseURL,
 });
 
-//For geoLocation
-export const API_KEY = "c18cd44390b34384b29cb286f230721c";
-export const axiosGeoInst = axios.create({
-  baseURL: "https://api.opencagedata.com/geocode/v1/",
+//For GoogleMap
+export const axiosGoogleGeoInst = axios.create({
+  baseURL: "https://maps.googleapis.com/maps/api/geocode/",
 });

@@ -1,13 +1,18 @@
 import { useState } from "react";
 import iconsPath from "../../assets/img/icons.svg";
-import MapComponent from "../MapComponent/MapComponent";
+import ModalWrapper from "../UI/ModalWrapper/ModalWrapper";
+import GoogleMapComponent from "../GoogleMapComponent/GoogleMapComponent";
 import css from "./Location.module.css";
 
 export default function Location({ location }) {
-  const [showMap, setShowMap] = useState(false);
+  const [isShowMap, setIsShowMap] = useState(false);
 
   const handleShowMap = () => {
-    setShowMap(true);
+    setIsShowMap(true);
+  };
+
+  const handleCloseMap = () => {
+    setIsShowMap(false);
   };
 
   return (
@@ -18,7 +23,12 @@ export default function Location({ location }) {
         </svg>
       </button>
       <p className={css.location}>{location}</p>
-      {showMap && <MapComponent location={location} />}
+
+      {isShowMap && (
+        <ModalWrapper onClose={handleCloseMap}>
+          <GoogleMapComponent location={location} />
+        </ModalWrapper>
+      )}
     </address>
   );
 }

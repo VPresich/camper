@@ -8,6 +8,16 @@ const geocodeSlice = createSlice({
     isLoading: false,
     error: null,
   },
+
+  reducers: {
+    clearCoordinates(state) {
+      state.coordinates = {
+        lat: 0,
+        lng: 0,
+      };
+    },
+  },
+
   extraReducers: (builder) => {
     builder
       .addCase(geocodeLocation.pending, (state) => {
@@ -25,4 +35,5 @@ const geocodeSlice = createSlice({
   },
 });
 
+export const { clearCoordinates } = geocodeSlice.actions;
 export default geocodeSlice.reducer;

@@ -1,22 +1,24 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { axiosGeoInst, API_KEY } from "../../api/axiosInst";
+import { axiosGoogleGeoInst } from "../../api/axiosInst";
+
+const googleApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+console.log("googleApiKey", googleApiKey);
 
 export const geocodeLocation = createAsyncThunk(
   "geocode/geocodeLocation",
   async ({ city, country }, thunkAPI) => {
     try {
-      console.log("CITY", city);
-      const response = await axiosGeoInst.get("json", {
+      const response = await axiosGoogleGeoInst.get("json", {
         params: {
-          q: `${city}, ${country}`,
-          key: API_KEY,
+          address: `${city}, ${country}`,
+          key: googleApiKey,
         },
       });
 
       const { results } = response.data;
       if (results.length > 0) {
-        const { lat, lng } = results[0].geometry;
+        const { lat, lng } = results[0].geometry.location;
         return { lat, lng };
       }
       throw new Error("Location not found");
