@@ -1,10 +1,7 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { GoTrash } from "react-icons/go";
 import CategoryList from "../UI/CategoryList/CategoryList";
 import Button from "../UI/Button/Button";
 import Location from "../Location/Location";
-import { removeFromFavorites } from "../../redux/campers/slice";
 import ModalWrapper from "../UI/ModalWrapper/ModalWrapper";
 import FavoriteButton from "../UI/FavoriteButton/FavoriteButton";
 import ModalContent from "../ModalContent/ModalContent";
@@ -13,7 +10,6 @@ import EllipsisText from "../UI/EllipsisText/EllipsisText";
 import Stars from "../UI/Stars/Stars";
 import getCategoryFavorites from "../../auxiliary/getCategoryFavorites";
 import Image from "../UI/Image/Image";
-
 import css from "./FavoriteCard.module.css";
 
 export default function Card({
@@ -26,7 +22,6 @@ export default function Card({
   details,
 }) {
   const [showModal, setShowModal] = useState(false);
-  const dispatch = useDispatch();
 
   const handleClick = () => {
     setShowModal(true);
@@ -34,10 +29,6 @@ export default function Card({
 
   const handleClose = () => {
     setShowModal(false);
-  };
-
-  const handleDelete = () => {
-    dispatch(removeFromFavorites(id));
   };
 
   return (
@@ -62,12 +53,10 @@ export default function Card({
             containerStyle={css.categoriesList}
           />
         </div>
-        <div className={css.buttons}>
-          <Button variant="color" width="173px" onClick={handleClick}>
-            Show more
-          </Button>
-          <GoTrash className={css.trashIcons} onClick={handleDelete} />
-        </div>
+
+        <Button variant="color" width="173px" onClick={handleClick}>
+          Show more
+        </Button>
       </div>
       {showModal && (
         <ModalWrapper onClose={handleClose}>

@@ -36,7 +36,7 @@ export default function HomePage() {
             <li className={css.hashtag}>#Reliable and Safe</li>
             <li className={css.hashtag}>#Explore More</li>
             <li className={css.hashtag}>#Exceptional Customer Service</li>
-            <li className={css.support}>#Support 24/7</li>
+            <li className={css.hashtag}>#Support 24/7</li>
           </ul>
           <address className={css.address}>
             <p className={css.phone}>

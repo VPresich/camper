@@ -1,4 +1,5 @@
 import { useRef, useEffect, useCallback } from "react";
+import ReactDOM from "react-dom";
 import css from "./ModalWrapper.module.css";
 import iconsPath from "../../../assets/img/icons.svg";
 
@@ -30,7 +31,7 @@ const ModalWrapper = ({ children, onClose }) => {
     };
   }, [handleDocumentKeyDown]);
 
-  return (
+  return ReactDOM.createPortal(
     <div className={css.modalWrapper} onClick={handleClickOutside}>
       <div className={css.modal} ref={wrapperRef}>
         <button className={css.closeBtn} onClick={onClose}>
@@ -45,7 +46,8 @@ const ModalWrapper = ({ children, onClose }) => {
         </button>
         {children}
       </div>
-    </div>
+    </div>,
+    document.getElementById("portal-root")
   );
 };
 

@@ -16,7 +16,6 @@ export default function Favorites() {
   const favoritsIdx = useSelector(selectFavorites);
 
   useEffect(() => {
-    if (favoritsIdx.length === 0) return;
     dispatch(fetchFavorites(favoritsIdx))
       .unwrap()
       .then((data) => {
