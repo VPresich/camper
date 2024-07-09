@@ -3,6 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosGoogleGeoInst } from "../../api/axiosInst";
 
 const googleApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+console.log("googleApiKey", googleApiKey);
 
 export const geocodeLocation = createAsyncThunk(
   "geocode/geocodeLocation",
