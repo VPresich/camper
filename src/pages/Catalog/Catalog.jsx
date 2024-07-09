@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCampersWithParams } from "../../redux/campers/operations";
 import { setPage } from "../../redux/campers/slice";
+import AppLayout from "../../components/AppLayout/AppLayout";
 import {
   // selectCampers, //without filters
   selectCurrentPage,
@@ -46,28 +47,30 @@ export default function Catalog() {
   return (
     <>
       <DocumentTitle>Camper catalog</DocumentTitle>
-      <div className={css.container}>
-        <SideBar />
-        <section className={css.catalogContainer}>
-          <h2 className="visually-hidden"> Campers catalog</h2>
+      <AppLayout>
+        <div className={css.container}>
+          <SideBar />
+          <section className={css.catalogContainer}>
+            <h2 className="visually-hidden"> Campers catalog</h2>
 
-          <CardsList campers={campers} />
+            <CardsList campers={campers} />
 
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : (
-            isMore && (
-              <Button
-                variant="transparent"
-                width="145px"
-                onClick={handleLoadMore}
-              >
-                Load More
-              </Button>
-            )
-          )}
-        </section>
-      </div>
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : (
+              isMore && (
+                <Button
+                  variant="transparent"
+                  width="145px"
+                  onClick={handleLoadMore}
+                >
+                  Load More
+                </Button>
+              )
+            )}
+          </section>
+        </div>
+      </AppLayout>
     </>
   );
 }
