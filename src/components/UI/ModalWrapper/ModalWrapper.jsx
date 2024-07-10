@@ -1,9 +1,16 @@
 import { useRef, useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectModalsStack } from "../../../redux/modals/selectors";
+import { addModal, removeModal } from "../../../redux/modals/slice";
 import ReactDOM from "react-dom";
+
 import css from "./ModalWrapper.module.css";
 import iconsPath from "../../../assets/img/icons.svg";
 
 const ModalWrapper = ({ children, onClose, portalId = "portal-root" }) => {
+  const dispatch = useDispatch();
+
+  const modalStack = useSelector(selectModalsStack);
   const wrapperRef = useRef(null);
 
   const handleClickOutside = useCallback(
@@ -18,11 +25,14 @@ const ModalWrapper = ({ children, onClose, portalId = "portal-root" }) => {
 
   const handleDocumentKeyDown = useCallback(
     (event) => {
-      if (event.key === "Escape") {
+      if (
+        event.key === "Escape" &&
+        modalStack[modalStack.length - 1] === portalId
+      ) {
         onClose();
       }
     },
-    [onClose]
+    [onClose, modalStack, portalId]
   );
 
   useEffect(() => {
@@ -31,6 +41,13 @@ const ModalWrapper = ({ children, onClose, portalId = "portal-root" }) => {
       document.removeEventListener("keydown", handleDocumentKeyDown);
     };
   }, [handleDocumentKeyDown]);
+
+  useEffect(() => {
+    dispatch(addModal(portalId));
+    return () => {
+      dispatch(removeModal());
+    };
+  }, [dispatch, portalId]);
 
   return ReactDOM.createPortal(
     <div className={css.modalWrapper} onClick={handleClickOutside}>
