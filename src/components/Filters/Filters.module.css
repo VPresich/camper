@@ -66,13 +66,12 @@
   margin-bottom: 32px;
 }
 
-.equipmentFilterTitle {
+.equipmentfilterTitle {
   font-family: inherit;
   font-weight: 600;
   font-size: 20px;
-  line-height: 120%;
+  line-height: 1.2;
   color: var(--main);
-  margin-bottom: 24px;
 }
 
 .checkBtsnWrapper {
@@ -93,7 +92,7 @@
   font-family: inherit;
   font-weight: 600;
   font-size: 20px;
-  line-height: 120%;
+  line-height: 1.2;
   color: var(--main);
 }
 
