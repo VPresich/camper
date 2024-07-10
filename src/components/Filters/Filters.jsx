@@ -1,15 +1,17 @@
-import { Formik, Field, Form } from "formik";
+import { Formik, Form } from "formik";
+import CustomField from "../UI/CustomField/CustomField";
 import { useDispatch } from "react-redux";
-import { CiLocationOn } from "react-icons/ci";
 import { saveQueryParams } from "../../redux/filters/slice";
 import Button from "../UI/Button/Button";
 import FilterButton from "../UI/FilterButton/FilterButton";
 import RadioButton from "../UI/RadioButton/RadioButton";
+
 import { resetStore } from "../../redux/campers/slice";
 import { formFilterIcons } from "./constants";
 import { equipmentFilterIcons } from "./constants";
 import ParamsTrueValues from "../../auxiliary/ParamsTrueValues";
 import { createQueryParams } from "../../auxiliary/createFilters";
+
 import css from "./Filters.module.css";
 
 export default function Filters() {
@@ -37,26 +39,15 @@ export default function Filters() {
     >
       <Form className={css.form}>
         <div className={css.filterControls}>
-          <div className={css.fieldWrapper}>
-            <label className={css.location} htmlFor="location">
-              Location
-            </label>
-            <CiLocationOn className={css.locationIcon} />
-            <Field
-              className={css.fieldLocation}
-              type="text"
-              name="location"
-              id="location"
-              placeholder="Kyiv, Ukraine"
-            />
-          </div>
-
-          <h3 className={css.title}>Filters</h3>
-
+          <CustomField
+            label="Location"
+            name="name"
+            placeholder="Kyiv, Ukraine"
+          />
+          <p className={css.title}>Filters</p>
           <div className={css.equipmentFilter}>
             <h3 className={css.equipmentfilterTitle}>Vehicle equipment</h3>
             <hr className={css.line} />
-
             <div className={css.checkBtsnWrapper}>
               {equipmentFilterIcons.map((item) => (
                 <FilterButton
@@ -71,7 +62,6 @@ export default function Filters() {
               ))}
             </div>
           </div>
-
           <div className={css.vehiclefilter}>
             <h3 className={css.vehiclefilterTitle}>Vehicle type</h3>
             <hr className={css.line} />
