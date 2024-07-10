@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import css from "./ModalWrapper.module.css";
 import iconsPath from "../../../assets/img/icons.svg";
 
-const ModalWrapper = ({ children, onClose }) => {
+const ModalWrapper = ({ children, onClose, portalId = "portal-root" }) => {
   const wrapperRef = useRef(null);
 
   const handleClickOutside = useCallback(
@@ -47,7 +47,7 @@ const ModalWrapper = ({ children, onClose }) => {
         {children}
       </div>
     </div>,
-    document.getElementById("portal-root")
+    document.getElementById(portalId)
   );
 };
 

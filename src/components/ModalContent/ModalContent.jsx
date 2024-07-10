@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { selectCamperById } from "../../redux/campers/selectors";
+import Location from "../Location/Location";
 import { getCamperById } from "../../redux/campers/operations";
 import formatPrice from "../../auxiliary/formatPrice";
 import getReviewersRating from "../../auxiliary/getReviewersRating";
@@ -27,6 +28,7 @@ export default function ModalContent({ id }) {
     description,
     gallery,
     details,
+    location,
     adults,
     transmission,
     engine,
@@ -54,7 +56,10 @@ export default function ModalContent({ id }) {
           <h2 className="visually-hidden">Main content</h2>
           <h3 className={css.name}>{name}</h3>
           <div className={css.wrapperRating}>
-            <Rating rating={getReviewersRating(reviews)} />
+            <div className={css.locationWrapper}>
+              <Rating rating={getReviewersRating(reviews)} />
+              <Location location={location} />
+            </div>
             <p className={css.price}>{formatPrice(price)}</p>
           </div>
 

@@ -24,6 +24,7 @@ export default function Card({
   location,
 }) {
   const [showModal, setShowModal] = useState(false);
+
   const handleClick = () => {
     setShowModal(true);
   };
@@ -41,7 +42,7 @@ export default function Card({
           <CardTitle name={name} price={price} id={id} />
           <div className={css.wrapperSecondLine}>
             <Rating rating={getReviewersRating(reviews)} />
-            <Location location={location} />
+            <Location location={location} isModalOpen={false} />
           </div>
         </div>
         <EllipsisText

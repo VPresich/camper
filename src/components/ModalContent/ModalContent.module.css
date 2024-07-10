@@ -44,6 +44,12 @@
   width: 206px;
 }
 
+.locationWrapper {
+  display: flex;
+  column-gap: 16px;
+  align-items: center;
+}
+
 .menuItem {
   font-weight: 600;
   font-size: 20px;
