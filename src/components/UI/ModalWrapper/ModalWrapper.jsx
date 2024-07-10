@@ -8,6 +8,7 @@ const ModalWrapper = ({ children, onClose, portalId = "portal-root" }) => {
 
   const handleClickOutside = useCallback(
     (event) => {
+      event.stopPropagation();
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
         onClose();
       }
@@ -33,7 +34,13 @@ const ModalWrapper = ({ children, onClose, portalId = "portal-root" }) => {
 
   return ReactDOM.createPortal(
     <div className={css.modalWrapper} onClick={handleClickOutside}>
-      <div className={css.modal} ref={wrapperRef}>
+      <div
+        className={css.modal}
+        ref={wrapperRef}
+        onClick={(event) => {
+          event.stopPropagation();
+        }}
+      >
         <button className={css.closeBtn} onClick={onClose}>
           <svg
             className={css.icon}

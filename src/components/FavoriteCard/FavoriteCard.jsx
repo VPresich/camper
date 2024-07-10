@@ -12,7 +12,7 @@ import getCategoryFavorites from "../../auxiliary/getCategoryFavorites";
 import Image from "../UI/Image/Image";
 import css from "./FavoriteCard.module.css";
 
-export default function Card({
+export default function FaivoriteCard({
   id,
   imgUrl,
   name,

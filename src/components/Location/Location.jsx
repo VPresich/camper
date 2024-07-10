@@ -5,7 +5,7 @@ import GoogleMapComponent from "../GoogleMapComponent/GoogleMapComponent";
 
 import css from "./Location.module.css";
 
-export default function Location({ location, isModalOpen }) {
+export default function Location({ location }) {
   const [isShowMap, setIsShowMap] = useState(false);
 
   const handleShowMap = () => {
@@ -26,11 +26,7 @@ export default function Location({ location, isModalOpen }) {
       <p className={css.location}>{location}</p>
 
       {isShowMap && (
-        <ModalWrapper
-          onClose={handleCloseMap}
-          portalId={"portal-map"}
-          isModalOpen={isModalOpen}
-        >
+        <ModalWrapper onClose={handleCloseMap} portalId={"portal-map"}>
           <GoogleMapComponent location={location} />
         </ModalWrapper>
       )}
