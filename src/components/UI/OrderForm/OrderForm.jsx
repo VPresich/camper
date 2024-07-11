@@ -7,6 +7,7 @@ import css from "./OrderForm.module.css";
 
 export default function OrderForm() {
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
+    // console.log(values);
     resetForm();
     setSubmitting(false);
   };
