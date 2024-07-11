@@ -41,7 +41,7 @@ export default function Filters() {
         <div className={css.filterControls}>
           <CustomField
             label="Location"
-            name="name"
+            name="location"
             placeholder="Kyiv, Ukraine"
           />
           <p className={css.title}>Filters</p>
