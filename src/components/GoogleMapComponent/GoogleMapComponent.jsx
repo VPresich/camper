@@ -4,17 +4,19 @@ import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCoordinates } from "../../redux/geocode/slice";
 import { selectGeoCoords } from "../../redux/geocode/selectors";
-import { geocodeLocation } from "../../redux/geocode/operations";
+import { geocodeCity, geocodeLocation } from "../../redux/geocode/operations";
 
 const googleApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+const libraries = ["places"];
 
-const MapComponent = ({ location }) => {
+const MapComponent = ({ location, onLocationSelect = null }) => {
   const dispatch = useDispatch();
   const mapRef = useRef(null);
 
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
     googleMapsApiKey: googleApiKey,
+    libraries,
   });
 
   const handleLoad = useCallback(function callback(map) {
@@ -25,17 +27,26 @@ const MapComponent = ({ location }) => {
     mapRef.current = null;
   }, []);
 
-  const coord = useSelector(selectGeoCoords);
+  const handleMapClick = (event) => {
+    const newLocation = {
+      lat: event.latLng.lat(),
+      lng: event.latLng.lng(),
+    };
+    dispatch(geocodeCity(newLocation))
+      .unwrap()
+      .then((city) => {
+        onLocationSelect && onLocationSelect(city);
+      })
+      .catch(() => {
+        toast.error("Error fetching");
+      });
+  };
 
+  const coord = useSelector(selectGeoCoords);
   useEffect(() => {
     if (location) {
       const [country, city] = location.split(",").map((part) => part.trim());
-      dispatch(geocodeLocation({ city, country }))
-        .unwrap()
-        .then(() => {})
-        .catch((err) => {
-          toast.error(err.message);
-        });
+      dispatch(geocodeLocation({ city, country }));
     }
 
     return () => {
@@ -62,6 +73,7 @@ const MapComponent = ({ location }) => {
           zoom={13}
           onLoad={handleLoad}
           onUnmount={handleUnmount}
+          onClick={handleMapClick}
         >
           {coord && (
             <Marker

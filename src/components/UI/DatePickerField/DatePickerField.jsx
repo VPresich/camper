@@ -1,39 +1,59 @@
 import DatePicker from "react-datepicker";
-import clsx from "clsx";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { registerLocale } from "react-datepicker";
 import { FaRegCalendar } from "react-icons/fa";
+import enGB from "date-fns/locale/en-GB";
+import { format } from "date-fns";
+
 import "react-datepicker/dist/react-datepicker.css";
-import css from "./DatePickerField.module.css";
+import "./DatePickerField.css";
 
-const DatePickerField = ({ field, form, placeholder, className, ...props }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const customLocale = {
+  ...enGB,
+  localize: {
+    ...enGB.localize,
+    day: (n) => ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][n],
+  },
+};
+registerLocale("custom-en-GB", customLocale);
 
-  const openCalendar = () => {
-    setIsOpen(true);
+const DatePickerInput = ({ field, form }) => {
+  const [selectedDate, setSelectedDate] = useState(field.value);
+  const datePickerRef = useRef(null);
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+    const formattedDate = format(date, "yyyy/MM/dd");
+    form.setFieldValue(field.name, formattedDate);
   };
 
-  const closeCalendar = () => {
-    setIsOpen(false);
+  useEffect(() => {
+    setSelectedDate(field.value);
+  }, [field.value]);
+
+  const handleIconClick = () => {
+    if (datePickerRef.current) {
+      datePickerRef.current.setOpen(true);
+    }
   };
 
   return (
-    <div className={css.datePickerWrapper}>
+    <div className="datepicker__wrapper">
       <DatePicker
-        selected={field.value}
-        onChange={(date) => {
-          form.setFieldValue(field.name, date);
-          closeCalendar();
-        }}
-        dateFormat="yyyy/MM/dd"
-        className={clsx(className)}
-        placeholderText={placeholder}
-        open={isOpen}
-        onClickOutside={closeCalendar}
-        {...props}
+        ref={datePickerRef}
+        className="datepicker"
+        calendarClassName="datepicker__calendar"
+        wrapperClassName="datepicker__wrapper"
+        selected={selectedDate}
+        onChange={handleDateChange}
+        placeholderText="Booking date"
+        showPopperArrow={false}
+        locale="custom-en-GB"
+        minDate={new Date()}
       />
-      <FaRegCalendar className={css.calendarIcon} onClick={openCalendar} />
+      <FaRegCalendar className="datepicker__icon" onClick={handleIconClick} />
     </div>
   );
 };
 
-export default DatePickerField;
+export default DatePickerInput;

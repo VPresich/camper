@@ -26,3 +26,30 @@ export const geocodeLocation = createAsyncThunk(
     }
   }
 );
+
+export const geocodeCity = createAsyncThunk(
+  "geocode/geocodeCity",
+  async ({ lat, lng }, thunkAPI) => {
+    try {
+      const response = await axiosGoogleGeoInst.get("json", {
+        params: {
+          latlng: `${lat},${lng}`,
+          key: googleApiKey,
+        },
+      });
+
+      const { results } = response.data;
+      if (results.length > 0) {
+        const addressComponents = results[0].address_components;
+        for (let component of addressComponents) {
+          if (component.types.includes("locality")) {
+            return component.long_name;
+          }
+        }
+      }
+      throw new Error("City not found");
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

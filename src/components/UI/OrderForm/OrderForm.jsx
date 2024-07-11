@@ -6,9 +6,9 @@ import TextareaForm from "../TextareaForm/TextareaForm";
 import css from "./OrderForm.module.css";
 
 export default function OrderForm() {
-  const handleSubmit = (values, { setSubmitting, resetForm }) => {
-    resetForm();
-    setSubmitting(false);
+  const handleSubmit = (values, actions) => {
+    // console.log(values);
+    actions.resetForm();
   };
 
   return (

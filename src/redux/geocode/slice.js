@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { geocodeLocation } from "./operations";
+import { geocodeLocation, geocodeCity } from "./operations";
 
 const geocodeSlice = createSlice({
   name: "geocode",
   initialState: {
     coordinates: null,
+    city: "",
     isLoading: false,
     error: null,
   },
@@ -29,6 +30,19 @@ const geocodeSlice = createSlice({
         state.coordinates = action.payload;
       })
       .addCase(geocodeLocation.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+
+      .addCase(geocodeCity.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(geocodeCity.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.city = action.payload;
+      })
+      .addCase(geocodeCity.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });
