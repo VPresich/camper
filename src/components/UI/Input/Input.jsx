@@ -10,7 +10,6 @@ export default function Input({ name, placeholder, type }) {
           name={name}
           component={DatePickerField}
           placeholder={placeholder}
-          className={css.fieldInput}
         />
       ) : (
         <Field
