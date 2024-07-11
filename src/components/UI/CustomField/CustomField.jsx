@@ -22,7 +22,6 @@ export default function CustomField({ label, name, placeholder }) {
   };
 
   const handleLocationSelect = (location) => {
-    console.log("LOCATION:", location);
     setFieldValue(name, location);
     handleCloseMap();
   };

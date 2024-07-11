@@ -9,7 +9,7 @@ export default function Input({ name, placeholder, type }) {
         <Field
           name={name}
           component={DatePickerField}
-          placeholder={placeholder}
+          placeholderText={placeholder}
         />
       ) : (
         <Field

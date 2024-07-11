@@ -47,7 +47,6 @@ export const geocodeCity = createAsyncThunk(
           }
         }
       }
-
       throw new Error("City not found");
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
