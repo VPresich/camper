@@ -7,23 +7,8 @@
 }
 
 .favoritesContent {
-  margin-top: 60px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  max-height: 558px;
-}
-
-.favoritesContent::-webkit-scrollbar {
-  border-radius: 7px;
-  width: 8px;
-  background: var(--white);
-}
-
-.favoritesContent::-webkit-scrollbar-thumb {
-  border-radius: 7px;
-  width: 8px;
-  height: 256px;
-  background: var(--button);
+  padding-top: 60px;
+  padding-bottom: 60px; 
 }
 
 .text {
